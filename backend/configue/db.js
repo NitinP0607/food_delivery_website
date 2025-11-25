@@ -1,8 +1,19 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+// Load .env variables
+dotenv.config();
 
 export const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://patelnitin1299:patelnitin1299@cluster0.uiixljo.mongodb.net/fooddel')
-    .then(()=>{
-        console.log("MongoDB connected");
-    })
-}
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1); // Stop server if DB fails
+  }
+};
