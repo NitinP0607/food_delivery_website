@@ -2,11 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './configue/db.js';
 import foodRouter from './routes/foodRoute.js';
+import dotenv from "dotenv";
+dotenv.config(); 
 
 //App Configue
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //Middlewares
 

@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import "./Add.css"
 import { assets } from '../../assets/assets'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
-const Add = () => {
-  const url = "http://localhost:4000"
+const Add = ({url}) => {
+  
 
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
@@ -37,10 +38,11 @@ const Add = () => {
         price: "",
         category: "Salad"
       })
-      setImage(false)
+      setImage(false);
+      toast.success(response.data.message)
     }
     else {
-
+      toast.error(response.data.message)
     }
 
   }
@@ -52,7 +54,7 @@ const Add = () => {
           <label htmlFor="image">
             <img src={image ? URL.createObjectURL(image) : assets.upload_area} alt="" />
           </label>
-          <input onChange={(e) => setImage(e.target.files[0])} type="file" name="image" id="image" hidden required />
+          <input onChange={(e) => setImage(e.target.files[0])} type="file" name="image" id="image" hidden required/>
         </div>
         <div className="add-product-name flex-col">
           <p>Product name</p>

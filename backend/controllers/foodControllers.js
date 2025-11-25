@@ -29,7 +29,7 @@ const addFood = async (req, res) => {
         res.json({
             success: true,
             message: "Food added successfully",
-            food
+            data:food
         });
 
     } catch (err) {
@@ -54,7 +54,6 @@ const listFood = async (req,res)=>{
 }
 
 //Remove food item
-
 const removeFood = async(req,res)=>{
     try {
         const food = await foodModel.findById(req.body.id);
