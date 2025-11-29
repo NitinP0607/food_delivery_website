@@ -3,9 +3,8 @@ import "./List.css"
 import axios from 'axios'
 import { toast } from 'react-toastify'
 const List = ({url}) => {
-
-
-  const [list,setList] = useState([])
+  const [list,setList] = useState([]);
+  
   const fetchList = async()=>{
     const response = await axios.get(`${url}/api/food/list`);
     console.log(response.data)
